@@ -136,6 +136,12 @@ pre_install_docker_compose() {
     echo "type error, please try again"
     exit
   fi
+  echo -e "[1] 是"
+  echo -e "[2] 否"
+  read -p "是否开启tls:" is_tls
+  if [ "$is_tls" == "1" ]; then
+    read -p "请输入解析到本机的域名:" cert_domain
+  fi
 }
 
 # Config docker
@@ -202,6 +208,10 @@ EOF
   sed -i "s|ApiKey:.*|ApiKey: \"${api_key}\"|" ./config.yml
   sed -i "s|PanelType:.*|PanelType: \"${panel_type}\"|" ./config.yml
   sed -i "s|NodeType:.*|NodeType: ${node_type}|" ./config.yml
+  if [ "$is_tls" == "1" ]; then
+    sed -i "s|CertMode:.*|CertMode: http|" ./config.yml
+    sed -i "s|CertDomain:.*|CertDomain: \"${cert_domain}\"|" ./config.yml
+  fi
 }
 
 # Install docker and docker compose
