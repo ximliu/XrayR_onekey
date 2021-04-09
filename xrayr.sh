@@ -138,9 +138,15 @@ pre_install_docker_compose() {
   fi
   echo -e "[1] 是"
   echo -e "[2] 否"
-  read -p "是否开启tls:" is_tls
+  read -p "是否开启tls/xtls（默认否）:" is_tls
   if [ "$is_tls" == "1" ]; then
     read -p "请输入解析到本机的域名:" cert_domain
+    echo -e "[1] 是"
+    echo -e "[2] 否"
+    read -p "是否开启xtls（默认否）:" is_xtls
+    echo -e "[1] 是"
+    echo -e "[2] 否"
+    read -p "是否开启vless（默认否）:" is_vless
   fi
 }
 
@@ -211,6 +217,12 @@ EOF
   if [ "$is_tls" == "1" ]; then
     sed -i "s|CertMode:.*|CertMode: http|" ./config.yml
     sed -i "s|CertDomain:.*|CertDomain: \"${cert_domain}\"|" ./config.yml
+  fi
+  if [ "$is_xtls" == "1" ]; then
+    sed -i "s|EnableXTLS:.*|EnableXTLS: true|" ./config.yml
+  fi
+  if [ "$is_vless" == "1" ]; then
+    sed -i "s|EnableVless:.*|EnableVless: true|" ./config.yml
   fi
 }
 
