@@ -124,7 +124,7 @@ pre_install_docker_compose() {
   fi
   echo -e "[1] V2ray"
   echo -e "[2] Shadowsocks"
-  echo -e "[2] Trojan"
+  echo -e "[3] Trojan"
   read -p "节点类型:" node_num
   if [ "$node_num" == "1" ]; then
     node_type="V2ray"
