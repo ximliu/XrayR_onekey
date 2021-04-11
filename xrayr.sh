@@ -124,7 +124,7 @@ pre_install_docker_compose() {
   fi
   echo -e "[1] V2ray"
   echo -e "[2] Shadowsocks"
-  echo -e "[2] Trojan"
+  echo -e "[3] Trojan"
   read -p "节点类型:" node_num
   if [ "$node_num" == "1" ]; then
     node_type="V2ray"
@@ -156,7 +156,7 @@ config_docker() {
   echo "开始安装软件包"
   install_dependencies
   echo "加载DOCKER配置文件"
-  cat>docker-compose.yml<<EOF
+  cat >docker-compose.yml <<EOF
 version: '3'
 services: 
   xrayr: 
@@ -167,7 +167,7 @@ services:
     restart: always
     network_mode: host
 EOF
-  cat>dns.json<<EOF
+  cat >dns.json <<EOF
 {
     "servers": [
         "1.1.1.1",
@@ -177,7 +177,7 @@ EOF
     "tag": "dns_inbound"
 }
 EOF
-  cat>config.yml<<EOF
+  cat >config.yml <<EOF
 Log:
   Level: debug # Log level: none, error, warning, info, debug 
   AccessPath: # ./access.Log
@@ -353,7 +353,7 @@ while true; do
   read -p "请选择数字后回车 (回车默认 ${operation[0]}):" selected
   [ -z "${selected}" ] && selected="1"
   case "${selected}" in
-  1 | 2 | 3 | 4 | 5 | 6 | 7 )
+  1 | 2 | 3 | 4 | 5 | 6 | 7)
     echo
     echo "你的想法 = ${operation[${selected} - 1]}"
     echo
