@@ -125,6 +125,7 @@ pre_install_docker_compose() {
   echo -e "[1] V2ray"
   echo -e "[2] Shadowsocks"
   echo -e "[3] Trojan"
+  echo -e "[4] Shadowsocks-Plugin"
   read -p "节点类型:" node_num
   if [ "$node_num" == "1" ]; then
     node_type="V2ray"
@@ -132,6 +133,8 @@ pre_install_docker_compose() {
     node_type="Shadowsocks"
   elif [ "$node_num" == "3" ]; then
     node_type="Trojan"
+  elif [ "$node_num" == "4" ]; then
+    node_type="Shadowsocks-Plugin"
   else
     echo "type error, please try again"
     exit
