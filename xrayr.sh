@@ -195,7 +195,7 @@ Nodes:
   -
     PanelType: "SSpanel" # Panel type: SSpanel, V2board, PMpanel, , Proxypanel
     ApiConfig:
-      ApiHost: "http://127.0.0.1:667"
+      ApiHost: "http://8.8.8.8"
       ApiKey: "123"
       NodeID: 41
       NodeType: V2ray # Node type: V2ray, Shadowsocks, Trojan, Shadowsocks-Plugin
