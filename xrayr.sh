@@ -163,7 +163,7 @@ config_docker() {
 version: '3'
 services: 
   xrayr: 
-    image: crackair/xrayr:0.7.3
+    image: crackair/xrayr:latest
     volumes:
       - ./config.yml:/etc/XrayR/config.yml # 映射配置文件夹
       - ./dns.json:/etc/XrayR/dns.json 
