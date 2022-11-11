@@ -182,10 +182,11 @@ EOF
 EOF
   cat >config.yml <<EOF
 Log:
-  Level: none # Log level: none, error, warning, info, debug 
+  Level: warning # Log level: none, error, warning, info, debug 
   AccessPath: # /etc/XrayR/access.Log
   ErrorPath: # /etc/XrayR/error.log
 DnsConfigPath: # /etc/XrayR/dns.json # Path to dns config, check https://xtls.github.io/config/base/dns/ for help
+InboundConfigPath: # /etc/XrayR/custom_inbound.json # Path to custom inbound config, check https://xtls.github.io/config/inbound.html for help
 RouteConfigPath: # /etc/XrayR/route.json # Path to route config, check https://xtls.github.io/config/base/route/ for help
 OutboundConfigPath: # /etc/XrayR/custom_outbound.json # Path to custom outbound config, check https://xtls.github.io/config/base/outbound/ for help
 ConnetionConfig:
@@ -196,9 +197,9 @@ ConnetionConfig:
   BufferSize: 64 # The internal cache size of each connection, kB 
 Nodes:
   -
-    PanelType: "SSpanel" # Panel type: SSpanel, V2board, PMpanel, , Proxypanel
+    PanelType: "SSpanel" # Panel type: SSpanel, V2board, PMpanel, Proxypanel, V2RaySocks
     ApiConfig:
-      ApiHost: "http://8.8.8.8"
+      ApiHost: "http://127.0.0.1:667"
       ApiKey: "123"
       NodeID: 41
       NodeType: V2ray # Node type: V2ray, Shadowsocks, Trojan, Shadowsocks-Plugin
@@ -207,9 +208,9 @@ Nodes:
       EnableXTLS: false # Enable XTLS for V2ray and Trojan
       SpeedLimit: 0 # Mbps, Local settings will replace remote settings, 0 means disable
       DeviceLimit: 0 # Local settings will replace remote settings, 0 means disable
-      RuleListPath: # ./rulelist Path to local rulelist file
+      RuleListPath: # /etc/XrayR/rulelist Path to local rulelist file
     ControllerConfig:
-      ListenIP: 127.0.0.1 # IP address you want to listen
+      ListenIP: 0.0.0.0 # IP address you want to listen
       SendIP: 0.0.0.0 # IP address you want to send pacakage
       UpdatePeriodic: 60 # Time to update the nodeinfo, how many sec.
       EnableDNS: false # Use custom DNS config, Please ensure that you set the dns.json well
@@ -223,10 +224,10 @@ Nodes:
           Dest: 80 # Required, Destination of fallback, check https://xtls.github.io/config/fallback/ for details.
           ProxyProtocolVer: 0 # Send PROXY protocol version, 0 for dsable
       CertConfig:
-        CertMode: none # Option about how to get certificate: none, file, http, dns. Choose "none" will forcedly disable the tls config.
+        CertMode: dns # Option about how to get certificate: none, file, http, dns. Choose "none" will forcedly disable the tls config.
         CertDomain: "node1.test.com" # Domain to cert
-        CertFile: ./cert/node1.test.com.cert # Provided if the CertMode is file
-        KeyFile: ./cert/node1.test.com.key
+        CertFile: /etc/XrayR/cert/node1.test.com.cert # Provided if the CertMode is file
+        KeyFile: /etc/XrayR/cert/node1.test.com.key
         Provider: alidns # DNS cert provider, Get the full support list here: https://go-acme.github.io/lego/dns/
         Email: test@me.com
         DNSEnv: # DNS ENV option used by DNS provider
