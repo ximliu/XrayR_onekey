@@ -19,7 +19,7 @@ XrayR 后端docker一键对接脚本
 
   `mkdir xrayr1 && cd xrayr1`
 
-  `wget --no-check-certificate https://raw.githubusercontent.com/ximliu/XrayR_onekey/main/xrayr.sh && bash xrayr.sh`  
+  `git clone https://github.com/ximliu/XrayR_onekey.git`  
 
 * 多开后端只需新建文件夹，将脚本下载到该文件夹下运行即可
 
