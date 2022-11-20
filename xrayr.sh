@@ -166,7 +166,13 @@ services:
     image: ghcr.io/ximliu/xrayr-project:latest
     volumes:
       - ./config.yml:/etc/XrayR/config.yml # 映射配置文件夹
-      - ./dns.json:/etc/XrayR/dns.json 
+      - ./dns.json:/etc/XrayR/dns.json
+      - ./custom_inbound.json:/etc/XrayR/custom_inbound.json
+      - ./custom_outbound.json:/etc/XrayR/custom_outbound.json
+      - ./route.json:/etc/XrayR/route.json
+      - ./rulelist:/etc/XrayR/rulelist
+      - ./geoip.dat:/etc/XrayR/geoip.dat
+      - ./geosite.dat:/etc/XrayR/geosite.dat
     restart: always
     network_mode: host
 EOF
