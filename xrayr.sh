@@ -113,11 +113,14 @@ pre_install_docker_compose() {
   [ -z "${api_key}" ] && api_key="123"
   echo -e "[1] SSpanel"
   echo -e "[2] V2board"
+  echo -e "[3] NewV2board"
   read -p "前端面板类型:" panel_num
   if [ "$panel_num" == "1" ]; then
     panel_type="SSpanel"
   elif [ "$panel_num" == "2" ]; then
     panel_type="V2board"
+  elif [ "$panel_num" == "3" ]; then
+    panel_type="NewV2board"  
   else
     echo "type error, please try again"
     exit
